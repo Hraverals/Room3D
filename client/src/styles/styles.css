@@ -1,0 +1,44 @@
+.app-container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.upload-section {
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.viewer-container {
+    width: 100%;
+    height: 500px;
+    background: #ddd;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+model-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-btn:disabled { background: #999; }
+
+.loading-overlay {
+    padding-top: 200px;
+    color: #007bff;
+    font-weight: bold;
+}
