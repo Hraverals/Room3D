@@ -1,10 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 
 function Home() {
     const fileInputRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [modelUrl, setModelUrl] = useState(null);
     const [error, setError] = useState(null);
+    const [statusMsg, setStatusMsg] = useState("");
+
+    useEffect(() => {
+        const socket = new WebSocket('ws://localhost:5000');
+
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.status) {
+                setStatusMsg(data.status);
+            }
+        };
+
+        socket.onopen = () => console.log("웹소켓 연결 성공");
+        socket.onclose = () => console.log("웹소켓 연결 종료");
+
+        return () => socket.close();
+
+    }, []);
 
     const handleSubmit = async () => {
         const files = fileInputRef.current.files;
@@ -22,6 +40,7 @@ function Home() {
         setIsLoading(true);
         setModelUrl(null);
         setError(null);
+        setStatusMsg("서버로 데이터를 전송 중입니다...");
 
         const formData = new FormData();
         Array.from(files).forEach(file => {
@@ -55,6 +74,7 @@ function Home() {
             setError(err.message);
         } finally {
             setIsLoading(false);
+            setStatusMsg(""); // 작업 완료 후 메시지 초기화
         }
     };
 
@@ -69,10 +89,29 @@ function Home() {
                 </button>
             </div>
             <div className="viewer-container">
-                {isLoading && <div className="message">모델을 생성하고 있습니다. 잠시만 기다려주세요...</div>}
+                {isLoading && (
+                    <div className="message">
+                        <div className="spinner"></div>
+                        <p style={{ fontWeight: 'bold', color: '#007bff' }}>{statusMsg}</p>
+                        <p style={{ fontSize: '0.9em', color: '#666' }}>약 1분 정도 소요될 수 있습니다.</p>
+                    </div>
+                )}
+                
                 {error && <div className="message error">{error}</div>}
-                {!isLoading && !modelUrl && !error && <div className="message">사진을 업로드하면 여기에 3D 방이 나타납니다.</div>}
-                {modelUrl && <model-viewer src={modelUrl} camera-controls auto-rotate style={{ width: '100%', height: '600px' }} alt="A 3D model of a room"></model-viewer>}
+                
+                {!isLoading && !modelUrl && !error && (
+                    <div className="message">사진을 업로드하면 여기에 3D 방이 나타납니다.</div>
+                )}
+                
+                {modelUrl && (
+                    <model-viewer 
+                        src={modelUrl} 
+                        camera-controls 
+                        auto-rotate 
+                        style={{ width: '100%', height: '600px' }} 
+                        alt="A 3D model of a room">
+                    </model-viewer>
+                )}
             </div>
         </div>
     );
