@@ -2,31 +2,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Room3D</title>
-    <link rel="stylesheet" href="./src/styles/styles.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
-    <div class="app-container">
-        <h1>📸 Room3D</h1>
-        <p class="description">사진으로 만드는 가상 룸 투어</p>
-
-        <div class="upload-section">
-            <input type="file" id="fileInput" multiple accept="image/*">
-            <button id="submitBtn" class="submit-btn">3D 투어 생성하기</button>
-        </div>
-
-        <div class="viewer-container">
-            <div id="loadingMsg" class="loading-overlay" style="display: none;">
-                <p>공간을 3D로 재구성 중... (약 1분 소요)</p>
-            </div>
-            <model-viewer id="roomViewer" alt="Generated Room" auto-rotate camera-controls shadow-intensity="1" style="display: none;">
-            </model-viewer>
-            <p id="placeholderMsg">사진을 업로드하면 여기에 3D 방이 나타납니다.</p>
-        </div>
-    </div>
-
-    <script src="./src/app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
