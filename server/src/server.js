@@ -77,7 +77,7 @@ async function generate3DRoom(imageFiles) {
 
     } catch (error) {
         broadcastStatus("에러: 3D 생성 중 문제가 발생했습니다.");
-        console.error("API 통신 장애:", error.message);
+        console.error("API 통신 장애:", error);
         throw error;
     }
 };
