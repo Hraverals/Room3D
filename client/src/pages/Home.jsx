@@ -60,7 +60,8 @@ function Home() {
 
     return (
         <div className="app-container">
-            <h1>3D Room Tour 생성기</h1>
+            <h1>📸 3D Room Tour 생성기</h1>
+            <p className="description">여러 장의 방 사진을 업로드하여 나만의 3D 가상 투어를 만들어보세요!</p>
             <div className="controls">
                 <input type="file" ref={fileInputRef} multiple accept="image/*" disabled={isLoading} />
                 <button onClick={handleSubmit} disabled={isLoading}>
@@ -70,7 +71,7 @@ function Home() {
             <div className="viewer-container">
                 {isLoading && <div className="message">모델을 생성하고 있습니다. 잠시만 기다려주세요...</div>}
                 {error && <div className="message error">{error}</div>}
-                {!isLoading && !modelUrl && !error && <div className="message">여러 장의 방 사진을 업로드하고 버튼을 눌러주세요.</div>}
+                {!isLoading && !modelUrl && !error && <div className="message">사진을 업로드하면 여기에 3D 방이 나타납니다.</div>}
                 {modelUrl && <model-viewer src={modelUrl} camera-controls auto-rotate style={{ width: '100%', height: '600px' }} alt="A 3D model of a room"></model-viewer>}
             </div>
         </div>
