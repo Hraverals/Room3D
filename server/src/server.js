@@ -65,10 +65,10 @@ async function generate3DRoom(imageFiles) {
             target_dir: targetDir,
             conf_thres: 0, 
             frame_filter: "All",
-            mask_black_bg: true,
-            mask_white_bg: true,
+            mask_black_bg: false,
+            mask_white_bg: false,
             show_cam: true,
-            mask_sky: true,
+            mask_sky: false,
             prediction_mode: "Depthmap and Camera Branch", 
         });
 
