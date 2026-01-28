@@ -1,0 +1,22 @@
+services:
+  server:
+    image: room3d-server:1
+    build: ./server
+    env_file:
+      - ./server/.env
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /app
+
+    ports:
+      - 5000:5000
+
+  client:
+    image: room3d-client:1
+    build: ./client
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
