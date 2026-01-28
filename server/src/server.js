@@ -63,13 +63,13 @@ async function generate3DRoom(imageFiles) {
         broadcastStatus("3단계: 3D 공간 재구성 연산 시작 (약 1분 소요)...");
         const generateResult = await client.predict("/gradio_demo", { 
             target_dir: targetDir,
-            conf_thres: 0, 
+            conf_thres: 50, 
             frame_filter: "All",
             mask_black_bg: false,
             mask_white_bg: false,
             show_cam: true,
             mask_sky: false,
-            prediction_mode: "Depthmap and Camera Branch", 
+            prediction_mode: "Depthmap and Camera Branch",
         });
 
         broadcastStatus("4단계: 3D 모델 생성이 완료되었습니다! 결과물을 렌더링합니다.");
