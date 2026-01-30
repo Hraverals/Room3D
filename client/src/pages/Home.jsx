@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect} from 'react';
+import ThreeViewer from '../components/ThreeViewer';
 
 function Home() {
     const fileInputRef = useRef(null);
@@ -104,13 +105,7 @@ function Home() {
                 )}
                 
                 {modelUrl && (
-                    <model-viewer 
-                        src={modelUrl} 
-                        camera-controls 
-                        auto-rotate 
-                        style={{ width: '100%', height: '600px' }} 
-                        alt="A 3D model of a room">
-                    </model-viewer>
+                    <ThreeViewer modelUrl={modelUrl} />
                 )}
             </div>
         </div>
