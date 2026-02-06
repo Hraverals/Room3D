@@ -1,5 +1,5 @@
 # Room3D
-> **Room3D Project: Phase 1 Prototype**<br>
+> **Room3D Project Prototype**<br>
 > 충남대학교 학습동아리 **'아나줘요(Give Me ANA)'**
 
 
