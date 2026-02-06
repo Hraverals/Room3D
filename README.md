@@ -2,7 +2,6 @@
 > **Room3D Project: Phase 1 Prototype**<br>
 > 충남대학교 학습동아리 **'아나줘요(Give Me ANA)'**
 
----
 
 ## 📢 본 레포지토리는 프로토타입입니다!!
 
